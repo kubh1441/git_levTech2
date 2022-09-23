@@ -9,7 +9,7 @@
     <body>
         <h1>Blog Name</h1>
 
-        <div class='posts'>        <!-- これで$posts一つ一つのデータをforeachブロック内で$postとして扱える -->
+        <div class='posts'>
             @foreach($posts as $post)　<!-- コントローラで指定した変数$postsなので、$posts as $postとする -->
                 <div class='post'>
                     <h2 class='title'><a href="/posts/{{ $post->id }}">{{$post->title}}</a></h2><!-- $post->idはコレクションについて参照すればわかる。 -->
