@@ -8,13 +8,15 @@
     </head>
     <body>
         <h1>Blog Name</h1>
-        @foreach($posts as $post)　<!-- コントローラで指定した変数$postsなので、$posts as $postとする -->
+
         <div class='posts'>        <!-- これで$posts一つ一つのデータをforeachブロック内で$postとして扱える -->
-            <div class='post'>
-                <h2 class='title'>{{$post->title}}</h2><!-- 取り出された変数$postのデータのtitleカラム。titleは$postインスタンスのプロパティになっている。 -->
-                <p class='body'>{{$post->body}}</p><!-- 取り出された変数$postのデータのbodyカラム。bodyは$postインスタンスのプロパティになっている。 -->
-            </div>
+            @foreach($posts as $post)　<!-- コントローラで指定した変数$postsなので、$posts as $postとする -->
+                <div class='post'>
+                    <h2 class='title'>{{$post->title}}</h2><!-- 取り出された変数$postのデータのtitleカラム。titleは$postインスタンスのプロパティになっている。 -->
+                    <p class='body'>{{$post->body}}</p><!-- 取り出された変数$postのデータのbodyカラム。bodyは$postインスタンスのプロパティになっている。 -->
+                </div>
+            @endforeach
         </div>
-        @endforeach
+        <div class="paginate">{{ $posts->links()}}</div>
     </body>
 </html>
