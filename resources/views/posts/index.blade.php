@@ -9,10 +9,10 @@
     <body>
         <h1>Blog Name</h1>
 
-        <div class='posts'>        <!-- これで$posts一つ一つのデータをforeachブロック内で$postとして扱える -->
+        <div class='posts'>
             @foreach($posts as $post)　<!-- コントローラで指定した変数$postsなので、$posts as $postとする -->
                 <div class='post'>
-                    <h2 class='title'>{{$post->title}}</h2><!-- 取り出された変数$postのデータのtitleカラム。titleは$postインスタンスのプロパティになっている。 -->
+                    <h2 class='title'><a href="/posts/{{ $post->id }}">{{$post->title}}</a></h2><!-- $post->idはコレクションについて参照すればわかる。 -->
                     <p class='body'>{{$post->body}}</p><!-- 取り出された変数$postのデータのbodyカラム。bodyは$postインスタンスのプロパティになっている。 -->
                 </div>
             @endforeach

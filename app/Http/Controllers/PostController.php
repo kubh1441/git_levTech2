@@ -7,16 +7,16 @@ use App\Models\Post;//Models内のPostクラスをインポート
 
 class PostController extends Controller
 {
-    /**
-    * Post一覧を表示する
-    * 
-    * @param Post Postモデル
-    * @return array Postモデルリスト
-    */
-    public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用
+
+    public function index(Post $post)
     {
-
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit(1)]);//getByLimit()とすることで、Postモデルに追加した新たなメソッドgetByLimit()を呼び出す。
-
+        return view('posts.index')->with(['posts' => $post->getPaginateByLimit(1)]);
     }
+
+    public function show(Post $post)
+    {
+        return view('posts.show')->with(['post' => $post]);//show関数で対象のPostsテーブルデータを取得する
+        //'post'はshow.blade.phpで使う変数。中身の$postはid=1のPostインスタンス
+    }
+    
 }

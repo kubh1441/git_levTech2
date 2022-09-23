@@ -14,6 +14,5 @@ use App\Http\Controllers\PostController;//外部にあるPostControllerクラス
 |
 */
 
-Route::get('/', [PostController::class, 'index']);// /postsというURLを受け取ったら
-                                                  // PostControllerというクラスのindexメソッドを実行してください。
-                                                  //公式リファレンスhttps://readouble.com/laravel/9.x/ja/routing.html
+Route::get('/', [PostController::class, 'index']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
