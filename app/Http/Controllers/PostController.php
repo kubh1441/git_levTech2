@@ -24,4 +24,10 @@ class PostController extends Controller
         return view('posts.create');
     }
     
+    public function store(Request $request, Post $post)//postsテーブルにアクセスし保存する必要があるため、空のPostインスタンスを利用
+    {
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
+    }
 }
