@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Models\Post;//Models内のPostクラスをインポート
+use App\Http\Requests\PostRequest; // useする
 
 class PostController extends Controller
 {
 
     public function index(Post $post)
     {
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit(1)]);
+        return view('posts.index')->with(['posts' => $post->getPaginateByLimit(5)]);
     }
 
     public function show(Post $post)
@@ -19,4 +20,15 @@ class PostController extends Controller
         //'post'はshow.blade.phpで使う変数。中身の$postはid=1のPostインスタンス
     }
     
+    public function create()
+    {
+        return view('posts.create');
+    }
+    
+    public function store(Post $post, PostRequest $request)//postsテーブルにアクセスし保存する必要があるため、空のPostインスタンスを利用
+    {
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
+    }
 }

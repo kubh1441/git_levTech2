@@ -8,6 +8,8 @@
     </head>
     <body>
         <h1>Blog Name</h1>
+        
+        <a href='/posts/create'>create</a>
 
         <div class='posts'>
             @foreach($posts as $post)　<!-- コントローラで指定した変数$postsなので、$posts as $postとする -->

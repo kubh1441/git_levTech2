@@ -9,6 +9,11 @@ class Post extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'title',
+        'body',
+    ];
+    
     public function getPaginateByLimit(int $limit_count = 5)
     {
         //$thisというのは、継承しているModelクラスに用意されたメソッドlimit()を使うから書かれている。ようはlimit()がgetByLimit()と並列に宣言されているからということ。
