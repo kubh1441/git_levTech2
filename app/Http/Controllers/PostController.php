@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Post;//Models内のPostクラスをインポート
+use App\Models\Category;
 use App\Http\Requests\PostRequest; // useする
 
 class PostController extends Controller
@@ -20,9 +21,9 @@ class PostController extends Controller
         //'post'はshow.blade.phpで使う変数。中身の$postはid=1のPostインスタンス
     }
     
-    public function create()
+    public function create(Category $category)
     {
-        return view('posts.create');
+        return view('posts/create')->with(['categories' => $category->get()]);
     }
     
     public function store(Post $post, PostRequest $request)//postsテーブルにアクセスし保存する必要があるため、空のPostインスタンスを利用

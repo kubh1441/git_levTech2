@@ -13,6 +13,16 @@
                 <input type="text" name="post[title]" placeholder="タイトル" value="{{ old('post.title') }}"/><!-- name属性はサーバ側で扱うキーとなることを意識する -->
                 <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
             </div><!-- 今回はpost情報であることを明確にするため、post[title]とする。 -->
+            
+            <div class="category">
+                <h2>Category</h2>
+                <select name="post[category_id]">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            
             <div class="body">
                 <h2>Body</h2>
                 <textarea name="post[body]" placeholder="今日も1日お疲れさまでした。">{{old('post.body')}}</textarea>
