@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Index') }}
+        </h2>
+    </x-slot>
+
         <h1>Blog Name</h1>
         
         <a href='/posts/create'>create</a>
@@ -26,7 +24,20 @@
             @endforeach
         </div>
         
+        <h3>ログイン中のユーザー：{{ Auth::user()->name }}</h3>
+        
         <div class="paginate">{{ $posts->links()}}</div>
+        
+        <div><!--質問ページへのリンク追加-->
+            @foreach($questions as $question)
+                <div>
+                    <a href="https://teratail.com/questions/{{ $question['id'] }}">
+                        {{ $question['title'] }}
+                    </a>
+                </div>    
+            @endforeach
+        </div>
+        
         <script>
             function deletePost(id) {
                 'use strict'
@@ -36,5 +47,5 @@
                 }
             }
         </script>
-    </body>
-</html>
+
+</x-app-layout>
